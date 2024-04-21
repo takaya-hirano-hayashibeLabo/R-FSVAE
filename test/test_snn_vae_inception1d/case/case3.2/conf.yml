@@ -1,0 +1,17 @@
+batch_size: 128
+train_size_rate: 0.9
+save_interval: 50 #epoch
+
+VAE:
+  epochs: 300
+  in_channels: 1
+  input_size: 32
+  latent_dim: 256
+  lr: 0.001
+
+  batch_size: 128 #ここは上と同じ数字いれる
+  n_steps: 8 # timestep
+  model: "FSVAE" # FSVAE or  FSVAE_large
+  k: 20 # multiplier of channel
+  scheduled: true # whether to apply scheduled sampling
+  loss_func: 'mmd' # mmd or kld

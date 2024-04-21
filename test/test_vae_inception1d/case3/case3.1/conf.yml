@@ -1,0 +1,19 @@
+batch_size: 256
+train_size_rate: 0.9
+save_interval: 10 #epoch
+data_dir: /mnt/ssd1/hiranotakaya/master/dev/braille-recognition/main/data_collection/train_data/data3d_v2/data_128x128_sensor_grid
+
+VAE:
+  epochs: 100
+  in_channel: 1
+  input_size: 128
+  latent_dim: 256
+  channels: [32,64,128,256] #必ず4層にする
+  lr: 0.001
+  pool_sizes: [4,4,2,2] #プーリングのカーネルサイズ
+
+Inception:
+  epochs: 30
+  latent_dim: 256 #VAEのlatentdim
+  num_class: 10
+  lr: 0.001

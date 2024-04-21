@@ -1,0 +1,10 @@
+batch_size: 128
+train_size_rate: 0.9
+save_interval: 100 #epoch
+
+VAE:
+  epochs: 1000
+  in_channel: 1
+  input_size: 32
+  latent_dim: 256
+  lr: 0.001

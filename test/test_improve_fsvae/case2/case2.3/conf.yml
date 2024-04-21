@@ -1,0 +1,27 @@
+batch_size: 256
+train_size_rate: 0.9
+save_interval: 50 #epoch
+data_dir: /mnt/ssd1/hiranotakaya/master/dev/VaeInception1d/test/data/data_32x32_sensor_grid_v2
+is_vae_train: true
+vae_model_path: None
+
+VAE:
+  epochs: 300
+  in_channels: 1
+  input_size: 32
+  latent_dim: 32
+  lr: 0.001
+  hidden_dims: [4,8,16,32]
+  batch_size: 256 #ここは上と同じ数字いれる
+  n_steps: 8 # timestep
+  model: "FSVAE" # FSVAE or  FSVAE_large
+  k: 20 # multiplier of channel
+  scheduled: true # whether to apply scheduled sampling
+  loss_func: 'mmd' # mmd or kld
+
+Inception:
+  batch_size: 32 #実際はこれに時間次元をかけた量のミニバッチになる
+  epochs: 300
+  latent_dim: 256 #VAEのlatentdim
+  num_class: 10
+  lr: 0.001

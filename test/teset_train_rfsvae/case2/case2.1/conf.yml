@@ -1,0 +1,30 @@
+batch_size: 128
+train_size_rate: 0.9
+save_interval: 300 #epoch
+data_dir: /mnt/ssd1/hiranotakaya/master/dev/braille-recognition/main/data_collection/train_data/data3d_v3
+is_vae_train: true
+vae_model_path: None
+
+alpha: 0.001 #分類lossの係数
+recog_hiddens: [256] #分類器の中間層
+
+VAE:
+  epochs: 3000
+  in_channels: 1
+  input_size: 32
+  latent_dim: 256
+  lr: 0.001 #ちょっと係数大きめに
+  hidden_dims: [32,64,128,256] 
+  batch_size: 128 #ここは上と同じ数字いれる
+  n_steps: 16 # timestep
+  model: "FSVAE" # FSVAE or  FSVAE_large
+  k: 20 # multiplier of channel
+  scheduled: true # whether to apply scheduled sampling
+  loss_func: 'mmd' # mmd or kld
+
+Inception:
+  batch_size: 32 #実際はこれに時間次元をかけた量のミニバッチになる
+  epochs: 300
+  latent_dim: 256 #VAEのlatentdim
+  num_class: 10
+  lr: 0.001

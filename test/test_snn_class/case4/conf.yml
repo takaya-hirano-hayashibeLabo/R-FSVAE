@@ -1,0 +1,27 @@
+batch_size: 64
+train_size_rate: 0.9
+save_interval: 1 #epoch
+data_dir: /mnt/ssd1/hiranotakaya/master/dev/braille-recognition/main/data_collection/train_data/data3d_v3
+is_vae_train: false
+vae_model_path: /mnt/ssd1/hiranotakaya/master/dev/VaeInception1d/test/test_snn_vae_inception1d/case/case3.2/result/param299.pth
+
+VAE:
+  epochs: 300
+  in_channels: 1
+  input_size: 32
+  latent_dim: 256 #特徴量のサイズは同じに
+  lr: 0.001
+
+  batch_size: 64 #ここは上と同じ数字いれる
+  n_steps: 16 # timestep
+  model: "FSVAE" # FSVAE or  FSVAE_large
+  k: 20 # multiplier of channel
+  scheduled: true # whether to apply scheduled sampling
+  loss_func: 'mmd' # mmd or kld
+
+Inception:
+  batch_size: 128 #実際はこれに時間次元をかけた量のミニバッチになる
+  epochs: 300
+  latent_dim: 256 #VAEのlatentdim
+  num_class: 10
+  lr: 0.001
